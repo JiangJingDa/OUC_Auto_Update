@@ -1,17 +1,11 @@
 import requests
 import time
 import os
-from datetime import datetime, timezone, timedelta
-
-
-tz = timezone(timedelta(hours=+8))
-fmt = '%Y%m%d'
-zoned_time = datetime.today().astimezone(tz)
 
 Loginkey = os.environ["LOGINKEY"]
 Sendkey = os.environ["SENDKEY"]
 form_data = os.environ["FORM_DATA"]
-form_data = form_data + '&date='+str(zoned_time.strftime(fmt))+'&created='+str(int(time.time()))
+
 
 url = 'https://pingan.ouc.edu.cn/ncov/wap/default/save'
 
@@ -30,7 +24,5 @@ r = requests.post(url,data = form_data,headers = headers,cookies = Cookies)
 fturl = 'https://sctapi.ftqq.com/' + Sendkey + '.send?title= '+time.strftime("%Y-%m-%d %X", time.localtime())+'&desp='+r.text
 
 print(r.text)
-print(zoned_time.strftime(fmt))
-print(int(time.time()))
 
 requests.get(fturl)
