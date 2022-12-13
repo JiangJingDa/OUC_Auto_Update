@@ -24,13 +24,11 @@ headers = {
 	'X-Requested-With':'XMLHttpRequest',
 	'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
 	}
+try:
+	r = requests.post(url,data = form_data,headers = headers,cookies = Cookies,verify=False)
+except UnicodeEncodeError:
+	r = requests.post(url,data = form_data.encode("utf-8"),headers = headers,cookies = Cookies,verify=False)
 
-r = requests.post(url,data = form_data,headers = headers,cookies = Cookies,verify=False)
 fturl = 'https://sctapi.ftqq.com/' + Sendkey + '.send?title= '+ str(r.json()["m"])
-#fturl = 'https://sctapi.ftqq.com/' + Sendkey + '.send?title= '+time.strftime("%Y-%m-%d %X", time.localtime())+'&desp='+r.text
 
-print(r.text)
-print(zoned_time.strftime(fmt))
-print(int(time.time()))
-
-requests.get(fturl)
+requests.get(fturl
