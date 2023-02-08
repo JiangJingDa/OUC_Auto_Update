@@ -31,4 +31,4 @@ except UnicodeEncodeError:
 
 fturl = 'https://sctapi.ftqq.com/' + Sendkey + '.send?title= '+ str(r.json()["m"])
 
-requests.get(fturl
+requests.get(fturl)
